@@ -1,9 +1,10 @@
 import { Button } from "./components/ui/button";
-import { Github, FileVideo, Upload } from 'lucide-react'
+import { Github, FileVideo, Upload, Wand2 } from 'lucide-react'
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
 import { Label } from "./components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select";
+import { Slider } from "./components/ui/slider";
 
 
 export function App() {
@@ -87,6 +88,27 @@ export function App() {
                 Você poderá customizar essa opção em breve
               </span>
             </div>
+
+            <Separator/>
+
+            <div className="space-y-4">
+              <Label>Temperatura</Label>
+              <Slider
+                min={0}
+                max={1}
+                step={0.1}
+              />
+              <span className="block leading-relaxed text-sm text-muted-foreground italic">
+                Valores mais altos tendem a tornar o resultado mais criativos, porém com mais erros.
+              </span>
+            </div>
+
+            <Separator/>
+
+            <Button type="submit" className="w-full">
+              Executar
+              <Wand2 className="w-4 h-4 ml-2"/>
+            </Button>
           </form>
         </aside>
       </main>
