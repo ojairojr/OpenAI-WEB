@@ -3,6 +3,7 @@ import { Github, FileVideo, Upload } from 'lucide-react'
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
 import { Label } from "./components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select";
 
 
 export function App() {
@@ -55,11 +56,11 @@ export function App() {
 
             <Separator/>
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <Label htmlFor="transcription_prompt">Prompt de Transcrição</Label>
               <Textarea 
                 id="transcription_prompt" 
-                className="min-h-29 leading-relaxed"
+                className="h-20 leading-relaxed resize-none"
                 placeholder="Inclua palavras chaves contidas no vídeo separadas por vírgula."
                 />
             </div>
@@ -71,8 +72,21 @@ export function App() {
 
           <Separator/>
 
-          <form>
-            
+          <form className="space-y-6">
+            <div className="space-y-2">
+              <Label>Modelos</Label>
+              <Select defaultValue="gpt3.5" disabled>
+                <SelectTrigger>
+                  <SelectValue/>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gpt3.5"> GPT 3.5-turbo</SelectItem>
+                </SelectContent>
+              </Select>
+              <span className="block text-sm text-muted-foreground italic">
+                Você poderá customizar essa opção em breve
+              </span>
+            </div>
           </form>
         </aside>
       </main>
