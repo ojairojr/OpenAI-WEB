@@ -25,9 +25,9 @@ export function App() {
         </div>
       </div>
 
-      <main className="flex-1 p-6 flex gap-6">
+      <main className="flex flex-1 p-6 gap-6">
         <div className="flex flex-col flex-1 gap-4">
-          <div className="grid grid-rows-2 gap-4 flex-1">
+          <div className="grid grid-rows-2 gap-4 flex flex-1">
             <Textarea
               className="resize-none p-4 leading-relaxed" 
               placeholder="Inclua o prompt para a IA"
@@ -74,6 +74,21 @@ export function App() {
           <Separator/>
 
           <form className="space-y-6">
+            <div className="space-y-2">
+                <Label>Prompt</Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecione um prompt"/>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="title"> Título do YouTube</SelectItem>
+                    <SelectItem value="description"> Descrição do YouTube</SelectItem>
+                  </SelectContent>
+                </Select>
+            </div>
+
+            <Separator/>
+
             <div className="space-y-2">
               <Label>Modelos</Label>
               <Select defaultValue="gpt3.5" disabled>
