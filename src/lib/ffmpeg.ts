@@ -3,7 +3,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg"
 let ffmpeg: FFmpeg | null
 
 export async function getFFmepg() {
-  const baseURL = "https://unpkg.com/browse/@ffmpeg/core-mt@0.12.6/dist/umd/"
+  const baseURL = "https://unpkg.com/browse/@ffmpeg/core-mt@0.12.6/dist/umd"
   if(ffmpeg){
     return ffmpeg
   }
