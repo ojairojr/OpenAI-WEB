@@ -70,7 +70,7 @@ export function VideoInput() {
     }
 
     const audioFile = await convertVideoToAudio(videoFile)
-    console.log(audioFile)
+    console.log(audioFile, prompt)
   }
 
   return (

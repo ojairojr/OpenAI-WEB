@@ -1,5 +1,5 @@
 import { Button } from "./components/ui/button";
-import { Github, FileVideo, Upload, Wand2 } from 'lucide-react'
+import { Github, Wand2 } from 'lucide-react'
 import { Separator } from "./components/ui/separator";
 import { Textarea } from "./components/ui/textarea";
 import { Label } from "./components/ui/label";
@@ -28,7 +28,7 @@ export function App() {
 
       <main className="flex flex-1 p-6 gap-6">
         <div className="flex flex-col flex-1 gap-4">
-          <div className="grid grid-rows-2 gap-4 flex flex-1">
+          <div className="grid grid-rows-2 gap-4 flex-1">
             <Textarea
               className="resize-none p-4 leading-relaxed" 
               placeholder="Inclua o prompt para a IA"
