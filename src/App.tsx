@@ -6,9 +6,15 @@ import { Label } from "./components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select";
 import { Slider } from "./components/ui/slider";
 import { VideoInput } from "./components/video-input-form";
-
+import { PromptSelect } from "./components/prompt-select";
+import { useState } from "react";
 
 export function App() {
+  const [temperature, setTemperature] = useState<number>(0.5)
+  function handlePromptSelected(template:string) {
+    console.log(template)
+  }
+
   return ( 
     <div className="min-h-screen flex flex-col">
       <div className="px-6 pv-5 flex items-center justify-between border-b">
@@ -53,15 +59,7 @@ export function App() {
           <form className="space-y-6">
             <div className="space-y-2">
                 <Label>Prompt</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione um prompt"/>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="title"> Título do YouTube</SelectItem>
-                    <SelectItem value="description"> Descrição do YouTube</SelectItem>
-                  </SelectContent>
-                </Select>
+                <PromptSelect onPromptSelected={handlePromptSelected}/>
             </div>
 
             <Separator/>
@@ -89,6 +87,8 @@ export function App() {
                 min={0}
                 max={1}
                 step={0.1}
+                value={[temperature]}
+                onValueChange={value => {setTemperature(value[0])}}
               />
               <span className="block leading-relaxed text-sm text-muted-foreground italic">
                 Valores mais altos tendem a tornar o resultado mais criativos, porém com mais erros.
