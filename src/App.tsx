@@ -8,13 +8,29 @@ import { Slider } from "./components/ui/slider";
 import { VideoInput } from "./components/video-input-form";
 import { PromptSelect } from "./components/prompt-select";
 import { useState } from "react";
+import { useCompletion } from "ai/react"
 
 export function App() {
   const [temperature, setTemperature] = useState<number>(0.5)
   const [videoId, setVideoId] = useState<string | null>(null)
-  function handlePromptSelected(template:string) {
-    console.log(template)
-  }
+
+  const {
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    completion,
+    isLoading
+  } = useCompletion({
+    api: "http://localhost:3333/ai/complete",
+    body: {
+      videoId,
+      temperature
+    },
+    // headers:{
+    //   "Content-type":"application/json"
+    // }
+  })
 
   return ( 
     <div className="min-h-screen flex flex-col">
@@ -37,10 +53,13 @@ export function App() {
         <div className="flex flex-col flex-1 gap-4">
           <div className="grid grid-rows-2 gap-4 flex-1">
             <Textarea
+              value={input}
+              onChange={handleInputChange}
               className="resize-none p-4 leading-relaxed" 
               placeholder="Inclua o prompt para a IA"
             />
             <Textarea
+              value={completion}
               className="resize-none p-4 leading-relaxed" 
               placeholder="Resultado gerado pela IA" 
               readOnly
@@ -57,10 +76,10 @@ export function App() {
 
           <Separator/>
 
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
                 <Label>Prompt</Label>
-                <PromptSelect onPromptSelected={handlePromptSelected}/>
+                <PromptSelect onPromptSelected={setInput}/>
             </div>
 
             <Separator/>
@@ -98,7 +117,9 @@ export function App() {
 
             <Separator/>
 
-            <Button type="submit" className="w-full">
+            <Button 
+              disabled={isLoading}
+              type="submit" className="w-full">
               Executar
               <Wand2 className="w-4 h-4 ml-2"/>
             </Button>
